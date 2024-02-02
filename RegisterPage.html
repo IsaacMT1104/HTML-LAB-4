@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="RegisterPage.css">
+    <title>Register</title>
+    <script>
+        function validateRegisterForm() {
+            var username = document.querySelector('.register-container input[placeholder="Username"]').value;
+            var email = document.querySelector('.register-container input[placeholder="Email"]').value;
+            var firstName = document.querySelector('.register-container input[placeholder="First Name"]').value;
+            var lastName = document.querySelector('.register-container input[placeholder="Last Name"]').value;
+            var fatherName = document.querySelector('.register-container input[placeholder="Father Name"]').value;
+            var motherName = document.querySelector('.register-container input[placeholder="Mother Name"]').value;
+            var password = document.querySelector('.register-container input[placeholder="Password"]').value;
+            var dob = document.getElementById('dob').value;
+            var favSubject = document.querySelector('.register-container input[placeholder="Favorite Subject"]').value;
+            var hobbies = document.querySelector('.register-container input[placeholder="Hobbies"]').value;
+
+            // Validate username (alphabets and numbers)
+            var usernameRegex = /^[a-zA-Z0-9]+$/;
+            if (!usernameRegex.test(username)) {
+                alert("Username must contain only alphabets and numbers.");
+                return false;
+            }
+
+            // Validate email format
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Invalid email format.");
+                return false;
+            }
+
+            // Validate names not less than 3 letters
+            if (firstName.length < 3 || lastName.length < 3 || fatherName.length < 3 || motherName.length < 3) {
+                alert("Names must be at least 3 letters long.");
+                return false;
+            }
+
+            // Validate DOB not after 2004
+            var dobYear = new Date(dob).getFullYear();
+            if (dobYear > 2004) {
+                alert("Date of Birth must be on or before the year 2004.");
+                return false;
+            }
+
+            
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="register-container">
+        <form class="RegisterPage" action="Website-1.html" onsubmit="return validateRegisterForm()">
+            <h2>Register</h2>
+            <div class="gif-container">
+            </div>
+            <input type="text" placeholder="Username" required>
+            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="text" placeholder="Father Name" required>
+            <input type="text" placeholder="Mother Name" required>
+            <input type="password" placeholder="Password" required>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="Date of Birth" required>
+            <input type="text" placeholder="Favorite Subject" required>
+            <input type="text" placeholder="Hobbies" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+
+</html>
